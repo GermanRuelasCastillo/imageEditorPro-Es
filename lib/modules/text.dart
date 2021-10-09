@@ -20,12 +20,15 @@ class _TextEditorImageState extends State<TextEditorImage> {
           TextField(
             controller: name,
             decoration: InputDecoration(
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.all(10),
-              hintText: 'Insert Your Message',
-              hintStyle: TextStyle(color: Colors.white),
-              alignLabelWithHint: true,
-            ),
+                border: UnderlineInputBorder(
+                  borderSide:
+                      BorderSide(color: Color.fromRGBO(202, 144, 244, 1)),
+                ),
+                enabledBorder: UnderlineInputBorder(
+                  borderSide:
+                      BorderSide(color: Color.fromRGBO(202, 144, 244, 1)),
+                ),
+                hintStyle: TextStyle(color: Colors.grey[400])),
             scrollPadding: EdgeInsets.all(20.0),
             keyboardType: TextInputType.multiline,
             minLines: 5,
