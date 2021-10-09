@@ -359,7 +359,7 @@ class _ImageEditorProState extends State<ImageEditorPro> {
                         },
                       );
                     },
-                    title: 'Brush',
+                    title: 'Pincel',
                   ),
                   BottomBarContainer(
                     colors: widget.bottomBarColor,
