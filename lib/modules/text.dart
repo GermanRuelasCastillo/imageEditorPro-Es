@@ -31,13 +31,13 @@ class _TextEditorImageState extends State<TextEditorImage> {
             minLines: 5,
             maxLines: 99999,
             style: TextStyle(
-              color: Colors.white,
+              color: Colors.black,
             ),
             autofocus: true,
           ).toContainer(height: xheight(context) / 2.2),
           xColumnCC.list([
             //   20.0.sizedHeight(),
-            'Slider Color'.text(),
+            'Configuraciones de color'.text(),
             //   10.0.sizedHeight(),
             xRowCC.list([
               BarColorPicker(
@@ -50,10 +50,10 @@ class _TextEditorImageState extends State<TextEditorImage> {
                       currentColor = Color(value);
                     });
                   }).xExpanded(),
-              'Reset'.text().xFlatButton(onPressed: () {})
+              'Resetear'.text().xFlatButton(onPressed: () {})
             ]),
             //   20.0.sizedHeight(),
-            'Slider White Black Color'.text(),
+            'Arrastra White Black Color'.text(),
             //   10.0.sizedHeight(),
             xRowCC.list([
               BarColorPicker(
@@ -94,9 +94,9 @@ class _TextEditorImageState extends State<TextEditorImage> {
         .xSingleChildScroolView()
         .xCenter()
         .xScaffold(
-          backgroundColor: Colors.black,
+          backgroundColor: Colors.white,
           appBar: AppBar(
-            backgroundColor: Colors.black,
+            backgroundColor: Color.fromRGBO(202, 144, 244, 1),
             actions: <Widget>[
               align == TextAlign.left
                   ? FontAwesomeIcons.alignLeft
