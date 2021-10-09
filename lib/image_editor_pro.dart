@@ -34,7 +34,8 @@ var howmuchwidgetis = 0;
 //List multiwidget = [];
 Color currentcolors = Colors.white;
 var opicity = 0.0;
-SignatureController _controller = SignatureController(penStrokeWidth: 5, penColor: Colors.green);
+SignatureController _controller =
+    SignatureController(penStrokeWidth: 5, penColor: Colors.green);
 
 class ImageEditorPro extends StatefulWidget {
   final Color appBarColor;
@@ -66,7 +67,8 @@ class _ImageEditorProState extends State<ImageEditorPro> {
   void changeColor(Color color) {
     setState(() => pickerColor = color);
     var points = _controller.points;
-    _controller = SignatureController(penStrokeWidth: 5, penColor: color, points: points);
+    _controller =
+        SignatureController(penStrokeWidth: 5, penColor: color, points: points);
   }
 
   List<Offset> offsets = [];
@@ -150,20 +152,23 @@ class _ImageEditorProState extends State<ImageEditorPro> {
                           child: ClipRect(
                             // <-- clips to the 200x200 [Container] below
 
-                            child: _image.path.decorationIFToFitHeight().xContainer(
-                                padding: EdgeInsets.zero,
-                                // alignment: Alignment.center,
-                                width: width.toDouble(),
-                                height: height.toDouble(),
-                                child: BackdropFilter(
-                                  filter: ImageFilter.blur(
-                                    sigmaX: blurValue,
-                                    sigmaY: blurValue,
-                                  ),
-                                  child: Container(
-                                    color: colorValue.withOpacity(opacityValue),
-                                  ),
-                                )),
+                            child: _image.path
+                                .decorationIFToFitHeight()
+                                .xContainer(
+                                    padding: EdgeInsets.zero,
+                                    // alignment: Alignment.center,
+                                    width: width.toDouble(),
+                                    height: height.toDouble(),
+                                    child: BackdropFilter(
+                                      filter: ImageFilter.blur(
+                                        sigmaX: blurValue,
+                                        sigmaY: blurValue,
+                                      ),
+                                      child: Container(
+                                        color: colorValue
+                                            .withOpacity(opacityValue),
+                                      ),
+                                    )),
                           ),
                         )
 
@@ -182,7 +187,8 @@ class _ImageEditorProState extends State<ImageEditorPro> {
                     onPanUpdate: (DragUpdateDetails details) {
                       setState(() {
                         RenderBox object = context.findRenderObject();
-                        var _localPosition = object.globalToLocal(details.globalPosition);
+                        var _localPosition =
+                            object.globalToLocal(details.globalPosition);
                         _points = List.from(_points)..add(_localPosition);
                       });
                     },
@@ -206,8 +212,9 @@ class _ImageEditorProState extends State<ImageEditorPro> {
                               },
                               onpanupdate: (details) {
                                 setState(() {
-                                  offsets[f.key] =
-                                      Offset(offsets[f.key].dx + details.delta.dx, offsets[f.key].dy + details.delta.dy);
+                                  offsets[f.key] = Offset(
+                                      offsets[f.key].dx + details.delta.dx,
+                                      offsets[f.key].dy + details.delta.dy);
                                 });
                               },
                               mapJson: f.value,
@@ -218,7 +225,9 @@ class _ImageEditorProState extends State<ImageEditorPro> {
                                   top: offsets[f.key].dy,
                                   ontap: () {
                                     showModalBottomSheet(
-                                        shape: BorderRadius.only(topRight: Radius.circular(10), topLeft: Radius.circular(10))
+                                        shape: BorderRadius.only(
+                                                topRight: Radius.circular(10),
+                                                topLeft: Radius.circular(10))
                                             .xShapeBorder(),
                                         context: context,
                                         builder: (context) {
@@ -230,8 +239,9 @@ class _ImageEditorProState extends State<ImageEditorPro> {
                                   },
                                   onpanupdate: (details) {
                                     setState(() {
-                                      offsets[f.key] =
-                                          Offset(offsets[f.key].dx + details.delta.dx, offsets[f.key].dy + details.delta.dy);
+                                      offsets[f.key] = Offset(
+                                          offsets[f.key].dx + details.delta.dx,
+                                          offsets[f.key].dy + details.delta.dy);
                                     });
                                   },
                                   mapJson: f.value,
@@ -308,12 +318,18 @@ class _ImageEditorProState extends State<ImageEditorPro> {
             'Save'.text().xFlatButton(
                 primary: Colors.white,
                 onPressed: () {
-                  screenshotController.capture(pixelRatio: widget.pixelRatio ?? 1.5).then((binaryIntList) async {
+                  screenshotController
+                      .capture(pixelRatio: widget.pixelRatio ?? 1.5)
+                      .then((binaryIntList) async {
                     //print("Capture Done");
 
-                    final paths = widget.pathSave ?? await getTemporaryDirectory();
+                    final paths =
+                        widget.pathSave ?? await getTemporaryDirectory();
 
-                    final file = await File('${paths.path}/' + DateTime.now().toString() + '.jpg').create();
+                    final file = await File('${paths.path}/' +
+                            DateTime.now().toString() +
+                            '.jpg')
+                        .create();
                     file.writeAsBytesSync(binaryIntList);
                     Navigator.pop(context, file);
                   }).catchError((onError) {
@@ -365,7 +381,10 @@ class _ImageEditorProState extends State<ImageEditorPro> {
                     colors: widget.bottomBarColor,
                     icons: Icons.text_fields,
                     ontap: () async {
-                      var value = await Navigator.push(context, MaterialPageRoute(builder: (context) => TextEditorImage()));
+                      var value = await Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => TextEditorImage()));
                       if (value['name'] == null) {
                         print('true');
                       } else {
@@ -388,7 +407,7 @@ class _ImageEditorProState extends State<ImageEditorPro> {
                         flipValue = flipValue == 0 ? math.pi : 0;
                       });
                     },
-                    title: 'Flip',
+                    title: 'Rotar',
                   ),
                   BottomBarContainer(
                     colors: widget.bottomBarColor,
@@ -415,14 +434,20 @@ class _ImageEditorProState extends State<ImageEditorPro> {
                     icons: Icons.blur_on,
                     ontap: () {
                       showModalBottomSheet(
-                        shape: BorderRadius.only(topRight: Radius.circular(10), topLeft: Radius.circular(10)).xShapeBorder(),
+                        shape: BorderRadius.only(
+                                topRight: Radius.circular(10),
+                                topLeft: Radius.circular(10))
+                            .xShapeBorder(),
                         context: context,
                         builder: (context) {
                           return StatefulBuilder(
                             builder: (context, setS) {
                               return xColumn.list(
                                 [
-                                  'Slider Filter Color'.toUpperCase().xTextColorWhite().toCenter(),
+                                  'Slider Filter Color'
+                                      .toUpperCase()
+                                      .xTextColorWhite()
+                                      .toCenter(),
                                   Divider(
 
                                       // height: 1,
@@ -443,7 +468,8 @@ class _ImageEditorProState extends State<ImageEditorPro> {
                                             });
                                           });
                                         }).xExpanded(),
-                                    'Reset'.xTextColorWhite().xFlatButton(onPressed: () {
+                                    'Reset'.xTextColorWhite().xFlatButton(
+                                        onPressed: () {
                                       setState(() {
                                         setS(() {
                                           colorValue = Colors.transparent;
@@ -468,7 +494,8 @@ class _ImageEditorProState extends State<ImageEditorPro> {
                                             });
                                           });
                                         }).xExpanded(),
-                                    'Reset'.xTextColorWhite().xFlatButton(onPressed: () {
+                                    'Reset'.xTextColorWhite().xFlatButton(
+                                        onPressed: () {
                                       setS(() {
                                         setState(() {
                                           blurValue = 0.0;
@@ -493,7 +520,8 @@ class _ImageEditorProState extends State<ImageEditorPro> {
                                             });
                                           });
                                         }).xExpanded(),
-                                    'Reset'.xTextColorWhite().xFlatButton(onPressed: () {
+                                    'Reset'.xTextColorWhite().xFlatButton(
+                                        onPressed: () {
                                       setS(() {
                                         setState(() {
                                           opacityValue = 0.0;
@@ -503,7 +531,9 @@ class _ImageEditorProState extends State<ImageEditorPro> {
                                   ]),
                                 ],
                               ).toContainer(
-                                borderRadius: BorderRadius.only(topRight: Radius.circular(10), topLeft: Radius.circular(10)),
+                                borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(10),
+                                    topLeft: Radius.circular(10)),
                                 padding: EdgeInsets.all(20),
                                 height: 400,
                                 color: Colors.black87,
@@ -533,8 +563,10 @@ class _ImageEditorProState extends State<ImageEditorPro> {
                     icons: Icons.photo,
                     ontap: () {
                       showModalBottomSheet(
-                          shape:
-                              BorderRadius.only(topRight: Radius.circular(10), topLeft: Radius.circular(10)).xShapeBorder(),
+                          shape: BorderRadius.only(
+                                  topRight: Radius.circular(10),
+                                  topLeft: Radius.circular(10))
+                              .xShapeBorder(),
                           context: context,
                           builder: (context) {
                             return StatefulBuilder(
@@ -557,7 +589,8 @@ class _ImageEditorProState extends State<ImageEditorPro> {
                                             });
                                           });
                                         }).xExpanded(),
-                                    'Reset'.xTextColorWhite().xFlatButton(onPressed: () {
+                                    'Reset'.xTextColorWhite().xFlatButton(
+                                        onPressed: () {
                                       setS(() {
                                         setState(() {
                                           blurValue = 0.0;
@@ -582,7 +615,8 @@ class _ImageEditorProState extends State<ImageEditorPro> {
                                             });
                                           });
                                         }).xExpanded(),
-                                    'Reset'.xTextColorWhite().xFlatButton(onPressed: () {
+                                    'Reset'.xTextColorWhite().xFlatButton(
+                                        onPressed: () {
                                       setS(() {
                                         setState(() {
                                           saturationValue = 0.0;
@@ -607,7 +641,8 @@ class _ImageEditorProState extends State<ImageEditorPro> {
                                             });
                                           });
                                         }).xExpanded(),
-                                    'Reset'.xTextColorWhite().xFlatButton(onPressed: () {
+                                    'Reset'.xTextColorWhite().xFlatButton(
+                                        onPressed: () {
                                       setS(() {
                                         setState(() {
                                           brightnessValue = 0.0;
@@ -620,8 +655,9 @@ class _ImageEditorProState extends State<ImageEditorPro> {
                             ).xContainer(
                                 color: Colors.black87,
                                 height: 300,
-                                borderRadius:
-                                    BorderRadius.only(topRight: Radius.circular(10), topLeft: Radius.circular(10)));
+                                borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(10),
+                                    topLeft: Radius.circular(10)));
                           });
                     },
                     title: 'Filter',
@@ -675,10 +711,15 @@ class _ImageEditorProState extends State<ImageEditorPro> {
             xRowCC.list(
               [
                 xColumnCC.list(
-                  [Icon(Icons.photo_library).xIconButton(), 10.0.sizedWidth(), 'Open Gallery'.text()],
+                  [
+                    Icon(Icons.photo_library).xIconButton(),
+                    10.0.sizedWidth(),
+                    'Open Gallery'.text()
+                  ],
                 ).xContainer(
                   onTap: () async {
-                    var image = await picker.getImage(source: ImageSource.gallery);
+                    var image =
+                        await picker.getImage(source: ImageSource.gallery);
                     await loadImage(File(image.path));
                     Navigator.pop(context);
                   },
@@ -692,7 +733,8 @@ class _ImageEditorProState extends State<ImageEditorPro> {
                   ],
                 ).xContainer(onTap: () async {
                   var image = await picker.getImage(source: ImageSource.camera);
-                  var decodedImage = await decodeImageFromList(File(image.path).readAsBytesSync());
+                  var decodedImage = await decodeImageFromList(
+                      File(image.path).readAsBytesSync());
 
                   setState(() {
                     height = decodedImage.height;
@@ -763,15 +805,18 @@ class _SignatState extends State<Signat> {
 
 Widget imageFilterLatest({brightness, saturation, hue, child}) {
   return ColorFiltered(
-      colorFilter: ColorFilter.matrix(ColorFilterGenerator.brightnessAdjustMatrix(
+      colorFilter:
+          ColorFilter.matrix(ColorFilterGenerator.brightnessAdjustMatrix(
         value: brightness,
       )),
       child: ColorFiltered(
-          colorFilter: ColorFilter.matrix(ColorFilterGenerator.saturationAdjustMatrix(
+          colorFilter:
+              ColorFilter.matrix(ColorFilterGenerator.saturationAdjustMatrix(
             value: saturation,
           )),
           child: ColorFiltered(
-            colorFilter: ColorFilter.matrix(ColorFilterGenerator.hueAdjustMatrix(
+            colorFilter:
+                ColorFilter.matrix(ColorFilterGenerator.hueAdjustMatrix(
               value: hue,
             )),
             child: child,
