@@ -12,6 +12,7 @@ class TextEditorImage extends StatefulWidget {
 class _TextEditorImageState extends State<TextEditorImage> {
   TextEditingController name = TextEditingController();
   Color currentColor = Colors.black;
+  Color primaryColor = Color.fromRGBO(202, 144, 244, 1);
   double slider = 12.0;
   @override
   Widget build(BuildContext context) {
@@ -21,14 +22,12 @@ class _TextEditorImageState extends State<TextEditorImage> {
             controller: name,
             decoration: InputDecoration(
                 border: UnderlineInputBorder(
-                  borderSide:
-                      BorderSide(color: Color.fromRGBO(202, 144, 244, 1)),
-                ),
-                enabledBorder: UnderlineInputBorder(
-                  borderSide:
-                      BorderSide(color: Color.fromRGBO(202, 144, 244, 1)),
-                ),
-                hintStyle: TextStyle(color: Colors.grey[400])),
+              borderSide: BorderSide(color: primaryColor),
+            ),
+            enabledBorder: UnderlineInputBorder(
+              borderSide: BorderSide(color: Color.fromRGBO(202, 144, 244, 1)),
+            ),
+            hintStyle: TextStyle(color: Colors.grey[400])),
             scrollPadding: EdgeInsets.all(20.0),
             keyboardType: TextInputType.multiline,
             minLines: 5,
@@ -56,21 +55,21 @@ class _TextEditorImageState extends State<TextEditorImage> {
               'Resetear'.text().xFlatButton(onPressed: () {})
             ]),
             //   20.0.sizedHeight(),
-            'Arrastra White Black Color'.text(),
+            // 'Arrastra White Black Color'.text(),
             //   10.0.sizedHeight(),
-            xRowCC.list([
-              BarColorPicker(
-                  width: 300,
-                  thumbColor: Colors.white,
-                  cornerRadius: 10,
-                  pickMode: PickMode.Grey,
-                  colorListener: (int value) {
-                    setState(() {
-                      currentColor = Color(value);
-                    });
-                  }).xExpanded(),
-              'Reset'.text().xFlatButton(onPressed: () {})
-            ]),
+            // xRowCC.list([
+            //   BarColorPicker(
+            //       width: 300,
+            //       thumbColor: Colors.white,
+            //       cornerRadius: 10,
+            //       pickMode: PickMode.Grey,
+            //       colorListener: (int value) {
+            //         setState(() {
+            //           currentColor = Color(value);
+            //         });
+            //       }).xExpanded(),
+            //   'Reset'.text().xFlatButton(onPressed: () {})
+            // ]),
             xColumn.list([
               10.0.sizedHeight(),
               'Size Adjust'.toUpperCase().xTextColorWhite().toCenter(),
@@ -93,6 +92,26 @@ class _TextEditorImageState extends State<TextEditorImage> {
                   }),
             ]).toContainer(color: Colors.black)
           ]).xContainer(color: Colors.white),
+          ElevatedButton(                
+            style: ElevatedButton.styleFrom(
+              primary: primaryColor,
+              minimumSize: Size(102, 45),
+              shape: new RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(50.0))
+            ),
+            onPressed: (){
+                  Navigator.pop(context, {
+                    'name': name.text,
+                    'color': currentColor,
+                    'size': slider.toDouble(),
+                    'align': align
+                  });
+            },
+            child: Text(
+              'Agregar Texto',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
         ])
         .xSingleChildScroolView()
         .xCenter()
@@ -150,28 +169,28 @@ class _TextEditorImageState extends State<TextEditorImage> {
                     }),
             ],
           ),
-          bottomNavigationBar: 'Add Text'
-              .xTextColorWhite(
-                fontWeight: FontWeight.bold,
-                fontsize: 22,
-              )
-              .xFlatButton(
-                onPressed: () {
-                  Navigator.pop(context, {
-                    'name': name.text,
-                    'color': currentColor,
-                    'size': slider.toDouble(),
-                    'align': align
-                  });
-                },
-                color: Colors.black,
-                padding: EdgeInsets.all(15),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
-              )
-              .xContainer(
-                color: Colors.white,
-              ),
+          // bottomNavigationBar: 'Add Text'
+          //     .xTextColorWhite(
+          //       fontWeight: FontWeight.bold,
+          //       fontsize: 22,
+          //     )
+          //     .xFlatButton(
+          //       onPressed: () {
+          //         Navigator.pop(context, {
+          //           'name': name.text,
+          //           'color': currentColor,
+          //           'size': slider.toDouble(),
+          //           'align': align
+          //         });
+          //       },
+          //       color: Colors.black,
+          //       padding: EdgeInsets.all(15),
+          //       shape: RoundedRectangleBorder(
+          //           borderRadius: BorderRadius.circular(10)),
+          //     )
+          //     .xContainer(
+          //       color: Colors.white,
+          //     ),
         );
   }
 

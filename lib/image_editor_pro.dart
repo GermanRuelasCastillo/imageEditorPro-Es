@@ -381,20 +381,21 @@ class _ImageEditorProState extends State<ImageEditorPro> {
                     colors: widget.bottomBarColor,
                     icons: Icons.text_fields,
                     ontap: () async {
-                      var value = await Navigator.push(
-                          context,
+                      var value = await Navigator.push(context,
                           MaterialPageRoute(
                               builder: (context) => TextEditorImage()));
-                      if (value['name'] == null) {
-                        print('true');
-                      } else {
-                        type.add(2);
-                        widgetJson.add(value);
-                        // fontsize.add(20);
-                        offsets.add(Offset.zero);
-                        //  colorList.add(value['color']);
-                        //    multiwidget.add(value['name']);
-                        howmuchwidgetis++;
+                      if (value != null) {
+                        if (value['name'] == null) {
+                          print('true');
+                        } else {
+                          type.add(2);
+                          widgetJson.add(value);
+                          // fontsize.add(20);
+                          offsets.add(Offset.zero);
+                          //  colorList.add(value['color']);
+                          //    multiwidget.add(value['name']);
+                          howmuchwidgetis++;
+                        }
                       }
                     },
                     title: 'Text',
