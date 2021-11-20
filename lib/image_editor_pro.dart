@@ -263,12 +263,12 @@ class _ImageEditorProState extends State<ImageEditorPro> {
         key: scaf,
         appBar: AppBar(
           actions: <Widget>[
-            Icon(FontAwesomeIcons.boxes).xIconButton(onPressed: () {
+            Icon(FontAwesomeIcons.boxes,color: Colors.white).xIconButton(onPressed: () {
               showCupertinoDialog(
                   context: context,
                   builder: (context) {
                     return AlertDialog(
-                      title: 'Select Height Width'.text(),
+                      title: 'Selecciona alto y ancho'.text(),
                       actions: <Widget>[
                         () {
                           setState(() {
@@ -278,28 +278,28 @@ class _ImageEditorProState extends State<ImageEditorPro> {
                           heightcontroler.clear();
                           widthcontroler.clear();
                           Navigator.pop(context);
-                        }.xFlatButton(child: 'Done'.text()),
+                        }.xFlatButton(child: 'Listo'.text()),
                       ],
                       content: SingleChildScrollView(
                         child: xColumnSS.list(
                           [
-                            'Define Height'.text(),
+                            'Alto'.text(),
                             10.0.sizedHeight(),
                             TextField(
                                 controller: heightcontroler,
                                 keyboardType: TextInputType.numberWithOptions(),
                                 decoration: InputDecoration(
-                                    hintText: 'Height',
+                                    hintText: 'Alto',
                                     contentPadding: EdgeInsets.only(left: 10),
                                     border: OutlineInputBorder())),
                             10.0.sizedHeight(),
-                            'Define Width'.text(),
+                            'Ancho'.text(),
                             10.0.sizedHeight(),
                             TextField(
                                 controller: widthcontroler,
                                 keyboardType: TextInputType.numberWithOptions(),
                                 decoration: InputDecoration(
-                                    hintText: 'Width',
+                                    hintText: 'Ancho',
                                     contentPadding: EdgeInsets.only(left: 10),
                                     border: OutlineInputBorder())),
                           ],
@@ -308,14 +308,14 @@ class _ImageEditorProState extends State<ImageEditorPro> {
                     );
                   });
             }),
-            Icon(Icons.clear).xIconButton(onPressed: () {
+            Icon(Icons.clear,color: Colors.white).xIconButton(onPressed: () {
               _controller.points.clear();
               setState(() {});
             }),
-            Icon(Icons.camera_alt).xIconButton(onPressed: () {
+            Icon(Icons.camera_alt,color: Colors.white).xIconButton(onPressed: () {
               bottomsheets();
             }),
-            'Save'.text().xFlatButton(
+            'Guardar'.text().xFlatButton(
                 primary: Colors.white,
                 onPressed: () {
                   screenshotController
@@ -356,7 +356,7 @@ class _ImageEditorProState extends State<ImageEditorPro> {
                         context: context,
                         builder: (context) {
                           return AlertDialog(
-                            title: 'Pick a color!'.text(),
+                            title: 'Escoge un color!'.text(),
                             content: ColorPicker(
                               pickerColor: pickerColor,
                               onColorChanged: changeColor,
@@ -364,7 +364,7 @@ class _ImageEditorProState extends State<ImageEditorPro> {
                               pickerAreaHeightPercent: 0.8,
                             ).xSingleChildScroolView(),
                             actions: <Widget>[
-                              'Got it'.text().xFlatButton(
+                              'Listo'.text().xFlatButton(
                                 onPressed: () {
                                   setState(() => currentColor = pickerColor);
                                   back(context);
@@ -398,7 +398,7 @@ class _ImageEditorProState extends State<ImageEditorPro> {
                         }
                       }
                     },
-                    title: 'Text',
+                    title: 'Texto',
                   ),
                   BottomBarContainer(
                     colors: widget.bottomBarColor,
@@ -418,7 +418,7 @@ class _ImageEditorProState extends State<ImageEditorPro> {
                         rotateValue--;
                       });
                     },
-                    title: 'Rotate left',
+                    title: 'Izquierda',
                   ),
                   BottomBarContainer(
                     colors: widget.bottomBarColor,
@@ -428,7 +428,7 @@ class _ImageEditorProState extends State<ImageEditorPro> {
                         rotateValue++;
                       });
                     },
-                    title: 'Rotate right',
+                    title: 'Derecha',
                   ),
                   BottomBarContainer(
                     colors: widget.bottomBarColor,
@@ -445,7 +445,7 @@ class _ImageEditorProState extends State<ImageEditorPro> {
                             builder: (context, setS) {
                               return xColumn.list(
                                 [
-                                  'Slider Filter Color'
+                                  'Filtro de Color'
                                       .toUpperCase()
                                       .xTextColorWhite()
                                       .toCenter(),
@@ -454,7 +454,7 @@ class _ImageEditorProState extends State<ImageEditorPro> {
                                       // height: 1,
                                       ),
                                   20.0.sizedHeight(),
-                                  'Slider Color'.xTextColorWhite(),
+                                  'Slider de Color'.xTextColorWhite(),
                                   //   10.0.sizedHeight(),
                                   xRowCC.list([
                                     BarColorPicker(
@@ -469,7 +469,7 @@ class _ImageEditorProState extends State<ImageEditorPro> {
                                             });
                                           });
                                         }).xExpanded(),
-                                    'Reset'.xTextColorWhite().xFlatButton(
+                                    'Reiniciar'.xTextColorWhite().xFlatButton(
                                         onPressed: () {
                                       setState(() {
                                         setS(() {
@@ -495,7 +495,7 @@ class _ImageEditorProState extends State<ImageEditorPro> {
                                             });
                                           });
                                         }).xExpanded(),
-                                    'Reset'.xTextColorWhite().xFlatButton(
+                                    'Reiniciar'.xTextColorWhite().xFlatButton(
                                         onPressed: () {
                                       setS(() {
                                         setState(() {
@@ -505,7 +505,7 @@ class _ImageEditorProState extends State<ImageEditorPro> {
                                     })
                                   ]),
                                   5.0.sizedHeight(),
-                                  'Slider Opacity'.xTextColorWhite(),
+                                  'Opacidad'.xTextColorWhite(),
                                   10.0.sizedHeight(),
                                   xRow.list([
                                     Slider(
@@ -521,7 +521,7 @@ class _ImageEditorProState extends State<ImageEditorPro> {
                                             });
                                           });
                                         }).xExpanded(),
-                                    'Reset'.xTextColorWhite().xFlatButton(
+                                    'Reiniciar'.xTextColorWhite().xFlatButton(
                                         onPressed: () {
                                       setS(() {
                                         setState(() {
@@ -557,7 +557,7 @@ class _ImageEditorProState extends State<ImageEditorPro> {
                       // // multiwidget.clear();
                       howmuchwidgetis = 0;
                     },
-                    title: 'Eraser',
+                    title: 'Borrador',
                   ),
                   BottomBarContainer(
                     colors: widget.bottomBarColor,
@@ -574,7 +574,7 @@ class _ImageEditorProState extends State<ImageEditorPro> {
                               builder: (context, setS) {
                                 return xColumnCC.list([
                                   5.0.sizedHeight(),
-                                  'Slider Hue'.xTextColorWhite(),
+                                  'Matiz'.xTextColorWhite(),
                                   10.0.sizedHeight(),
                                   xRow.list([
                                     Slider(
@@ -590,7 +590,7 @@ class _ImageEditorProState extends State<ImageEditorPro> {
                                             });
                                           });
                                         }).xExpanded(),
-                                    'Reset'.xTextColorWhite().xFlatButton(
+                                    'Reiniciar'.xTextColorWhite().xFlatButton(
                                         onPressed: () {
                                       setS(() {
                                         setState(() {
@@ -600,7 +600,7 @@ class _ImageEditorProState extends State<ImageEditorPro> {
                                     })
                                   ]),
                                   5.0.sizedHeight(),
-                                  'Slider Saturation'.xTextColorWhite(),
+                                  'Saturación'.xTextColorWhite(),
                                   10.0.sizedHeight(),
                                   xRow.list([
                                     Slider(
@@ -616,7 +616,7 @@ class _ImageEditorProState extends State<ImageEditorPro> {
                                             });
                                           });
                                         }).xExpanded(),
-                                    'Reset'.xTextColorWhite().xFlatButton(
+                                    'Reiniciar'.xTextColorWhite().xFlatButton(
                                         onPressed: () {
                                       setS(() {
                                         setState(() {
@@ -626,7 +626,7 @@ class _ImageEditorProState extends State<ImageEditorPro> {
                                     })
                                   ]),
                                   5.0.sizedHeight(),
-                                  'Slider Brightness'.xTextColorWhite(),
+                                  'Brillo'.xTextColorWhite(),
                                   10.0.sizedHeight(),
                                   xRow.list([
                                     Slider(
@@ -642,7 +642,7 @@ class _ImageEditorProState extends State<ImageEditorPro> {
                                             });
                                           });
                                         }).xExpanded(),
-                                    'Reset'.xTextColorWhite().xFlatButton(
+                                    'Reiniciar'.xTextColorWhite().xFlatButton(
                                         onPressed: () {
                                       setS(() {
                                         setState(() {
@@ -661,7 +661,7 @@ class _ImageEditorProState extends State<ImageEditorPro> {
                                     topLeft: Radius.circular(10)));
                           });
                     },
-                    title: 'Filter',
+                    title: 'Filtro',
                   ),
                   BottomBarContainer(
                     colors: widget.bottomBarColor,
@@ -704,7 +704,7 @@ class _ImageEditorProState extends State<ImageEditorPro> {
       builder: (BuildContext context) {
         return xColumn.list(
           [
-            'Select Image Options'.text().xCenter(),
+            'Opciones'.text().xCenter(),
             10.0.sizedHeight(),
             Divider(
               height: 1,
@@ -715,7 +715,7 @@ class _ImageEditorProState extends State<ImageEditorPro> {
                   [
                     Icon(Icons.photo_library).xIconButton(),
                     10.0.sizedWidth(),
-                    'Open Gallery'.text()
+                    'Abrir Galería'.text()
                   ],
                 ).xContainer(
                   onTap: () async {
@@ -730,7 +730,7 @@ class _ImageEditorProState extends State<ImageEditorPro> {
                   [
                     Icon(Icons.camera_alt).xIconButton(),
                     10.0.sizedWidth(),
-                    'Open Camera'.text(),
+                    'Abrir Cámara'.text(),
                   ],
                 ).xContainer(onTap: () async {
                   var image = await picker.getImage(source: ImageSource.camera);

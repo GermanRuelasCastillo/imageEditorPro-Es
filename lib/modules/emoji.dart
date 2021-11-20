@@ -28,7 +28,7 @@ class _EmojiViewState extends State<EmojiView> {
             textAlign: widget.mapJson['align'],
             style: TextStyle(
               color: widget.mapJson['color'],
-              fontSize: widget.mapJson['size'],
+              fontSize: 20,
             ))
         .xGesture(
           onTap: widget.ontap,

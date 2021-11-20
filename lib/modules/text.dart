@@ -13,7 +13,7 @@ class _TextEditorImageState extends State<TextEditorImage> {
   TextEditingController name = TextEditingController();
   Color currentColor = Colors.black;
   Color primaryColor = Color.fromRGBO(202, 144, 244, 1);
-  double slider = 12.0;
+  double slider = 40.0;
   @override
   Widget build(BuildContext context) {
     return xColumn
@@ -31,12 +31,11 @@ class _TextEditorImageState extends State<TextEditorImage> {
             scrollPadding: EdgeInsets.all(20.0),
             keyboardType: TextInputType.multiline,
             minLines: 5,
-            maxLines: 99999,
+            maxLines: 200,
             style: TextStyle(
               color: Colors.black,
-            ),
-            autofocus: true,
-          ).toContainer(height: xheight(context) / 2.2),
+            ),            
+          ).toContainer(height: 200,padding: EdgeInsets.all(20)),
           xColumnCC.list([
             //   20.0.sizedHeight(),
             'Configuraciones de color'.text(),
@@ -54,25 +53,25 @@ class _TextEditorImageState extends State<TextEditorImage> {
                   }).xExpanded(),
               'Resetear'.text().xFlatButton(onPressed: () {})
             ]),
-            //   20.0.sizedHeight(),
-            // 'Arrastra White Black Color'.text(),
-            //   10.0.sizedHeight(),
-            // xRowCC.list([
-            //   BarColorPicker(
-            //       width: 300,
-            //       thumbColor: Colors.white,
-            //       cornerRadius: 10,
-            //       pickMode: PickMode.Grey,
-            //       colorListener: (int value) {
-            //         setState(() {
-            //           currentColor = Color(value);
-            //         });
-            //       }).xExpanded(),
-            //   'Reset'.text().xFlatButton(onPressed: () {})
-            // ]),
+              20.0.sizedHeight(),
+            'Arrastra White Black Color'.text(),
+              10.0.sizedHeight(),
+            xRowCC.list([
+              BarColorPicker(
+                  width: 300,
+                  thumbColor: Colors.white,
+                  cornerRadius: 10,
+                  pickMode: PickMode.Grey,
+                  colorListener: (int value) {
+                    setState(() {
+                      currentColor = Color(value);
+                    });
+                  }).xExpanded(),
+              'Resetear'.text().xFlatButton(onPressed: () {})
+            ]),
             xColumn.list([
               10.0.sizedHeight(),
-              'Size Adjust'.toUpperCase().xTextColorWhite().toCenter(),
+              'Ajustar Tamaño'.toUpperCase().xTextColorWhite().toCenter(),
               10.0.sizedHeight(),
               Slider(
                   activeColor: Colors.white,
@@ -100,12 +99,14 @@ class _TextEditorImageState extends State<TextEditorImage> {
                   borderRadius: new BorderRadius.circular(50.0))
             ),
             onPressed: (){
+              if(name.text != ''){
                   Navigator.pop(context, {
                     'name': name.text,
                     'color': currentColor,
                     'size': slider.toDouble(),
                     'align': align
                   });
+              }
             },
             child: Text(
               'Agregar Texto',
@@ -168,29 +169,7 @@ class _TextEditorImageState extends State<TextEditorImage> {
                       });
                     }),
             ],
-          ),
-          // bottomNavigationBar: 'Add Text'
-          //     .xTextColorWhite(
-          //       fontWeight: FontWeight.bold,
-          //       fontsize: 22,
-          //     )
-          //     .xFlatButton(
-          //       onPressed: () {
-          //         Navigator.pop(context, {
-          //           'name': name.text,
-          //           'color': currentColor,
-          //           'size': slider.toDouble(),
-          //           'align': align
-          //         });
-          //       },
-          //       color: Colors.black,
-          //       padding: EdgeInsets.all(15),
-          //       shape: RoundedRectangleBorder(
-          //           borderRadius: BorderRadius.circular(10)),
-          //     )
-          //     .xContainer(
-          //       color: Colors.white,
-          //     ),
+          ),          
         );
   }
 
